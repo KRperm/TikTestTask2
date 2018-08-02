@@ -1,0 +1,40 @@
+﻿<Window x:Class="tikTestTask2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tikTestTask2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" Closing="OnCloseMainWindow">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Menu x:Name="menu" Margin="0,0,0.4,0" Height="24" VerticalAlignment="Top">
+            <MenuItem Header="Загрузить Файл" Click="OnClickLoadFile"/>
+            <MenuItem Header="Сохранить файл" Click="OnClickSaveFile"/>
+            <MenuItem Header="Добавить тег 1-ого уровня" Click="OnClickAddLevel1Tag"/>
+        </Menu>
+
+        <TreeView x:Name="treeView" Margin="0,24,0.4,-0.2" >
+            <TreeView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Добавить тег" Click="OnClickAddTag"/>
+                    <MenuItem Header="Переименовать тег" Click="OnClickRenameTag"/>
+                    <MenuItem Header="Удалить тег" Click="OnClickDeleteTag"/>
+                </ContextMenu>
+            </TreeView.ContextMenu>
+
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Path=Childrens}">
+                    <StackPanel Margin="2,2,0,0" Orientation="Horizontal">
+                        <Image Source="{Binding ImagePath}" Width="20px" Height="20px" Margin="0,0,5,0"/>
+                        <TextBlock Text="{Binding Info}"/>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+
+        </TreeView>
+
+    </Grid>
+</Window>
